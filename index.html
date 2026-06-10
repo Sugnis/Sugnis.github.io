@@ -17,21 +17,43 @@ th{color:#8b98a5;font-weight:600;background:#161d26;position:sticky;top:0}
 .up{color:var(--up)}.dn{color:var(--dn)}
 .wrap{overflow-x:auto}.disc{color:#8b98a5;font-size:.75rem;margin-top:24px;line-height:1.6}
 h2{font-size:1.05rem;border-left:4px solid #1d9bf0;padding-left:8px}
+select{background:#1c2530;color:#e7e9ea;border:1px solid #2a3540;border-radius:8px;padding:8px 12px;font-size:.95rem;margin:8px 0}
 </style></head><body>
 <div class=brand><img src="logo.png" alt="logo"></div>
 <h1>📈 每日精選 買賣參考價 ＆ 公開戰績</h1>
-<div class=sub>更新：2026-06-10 13:26 · 報酬已計入台股交易成本</div>
+<div class=sub>更新：2026-06-10 19:08 · 報酬已計入台股交易成本</div>
 <div class=cards>
   <div class=card><div class=v>0%</div><div class=l>勝率（0筆）</div></div>
   <div class=card><div class="v up">0%</div><div class=l>平均報酬</div></div>
   <div class=card><div class="v up">0%</div><div class=l>累積報酬(等權)</div></div>
   <div class=card><div class=v>10</div><div class=l>追蹤中</div></div>
 </div>
+<h2>📅 每日推薦存檔</h2>
+<div class=sub>選日期看當天推薦清單（含現價、買進/目標/停損；已結算的顯示結果）。</div>
+<select id=daysel><option value="2026-06-10">2026-06-10</option></select>
+<div class=wrap><table><thead><tr><th>代號</th><th>名稱</th><th>現價</th><th>參考買進</th><th>目標價</th><th>停損價</th><th>狀態/結果</th></tr></thead>
+<tbody id=daybody></tbody></table></div>
 <h2>🟢 目前追蹤中</h2>
-<div class=wrap><table><thead><tr><th>推薦日</th><th>代號</th><th>名稱</th><th>參考買進</th><th>目標價</th><th>停損價</th></tr></thead>
-<tbody><tr><td>2026-06-10</td><td>1342</td><td>八貫</td><td>72.38</td><td class=up>99.86</td><td class=dn>69.13</td></tr><tr><td>2026-06-10</td><td>3293</td><td>鈊象</td><td>661.36</td><td class=up>1420.04</td><td class=dn>592.96</td></tr><tr><td>2026-06-10</td><td>2520</td><td>冠德</td><td>30.12</td><td class=up>71.67</td><td class=dn>26.61</td></tr><tr><td>2026-06-10</td><td>2539</td><td>櫻花建</td><td>41.53</td><td class=up>89.73</td><td class=dn>37.2</td></tr><tr><td>2026-06-10</td><td>2882</td><td>國泰金</td><td>70.08</td><td class=up>93.93</td><td class=dn>67.21</td></tr><tr><td>2026-06-10</td><td>2883</td><td>凱基金</td><td>16.96</td><td class=up>23.58</td><td class=dn>16.18</td></tr><tr><td>2026-06-10</td><td>2887</td><td>台新新光金</td><td>17.62</td><td class=up>24.84</td><td class=dn>16.78</td></tr><tr><td>2026-06-10</td><td>3026</td><td>禾伸堂</td><td>78.1</td><td class=up>219.17</td><td class=dn>67.4</td></tr><tr><td>2026-06-10</td><td>3090</td><td>日電貿</td><td>78.66</td><td class=up>130.26</td><td class=dn>73.19</td></tr><tr><td>2026-06-10</td><td>8016</td><td>矽創</td><td>168.18</td><td class=up>272.66</td><td class=dn>156.96</td></tr></tbody></table></div>
+<div class=sub>只列「現價在參考買進價 ±15% 內」的標的——台股每日漲跌停 ±10%，留緩衝防邊界/進位。</div>
+<div class=wrap><table><thead><tr><th>推薦日</th><th>代號</th><th>名稱</th><th>現價</th><th>參考買進</th><th>目標價</th><th>停損價</th></tr></thead>
+<tbody><tr><td>2026-06-10</td><td>2539</td><td>櫻花建</td><td>39.35</td><td>41.43</td><td class=up>89.54</td><td class=dn>37.11</td></tr><tr><td>2026-06-10</td><td>2886</td><td>兆豐金</td><td>43.4</td><td>39.03</td><td class=up>46.78</td><td class=dn>38.03</td></tr><tr><td>2026-06-10</td><td>2889</td><td>國票金</td><td>15.05</td><td>14.27</td><td class=up>19.18</td><td class=dn>13.68</td></tr><tr><td>2026-06-10</td><td>1216</td><td>統一</td><td>74.4</td><td>72.12</td><td class=up>91.51</td><td class=dn>69.71</td></tr><tr><td>2026-06-10</td><td>6670</td><td>復盛應用</td><td>281.5</td><td>250.38</td><td class=up>397.1</td><td class=dn>234.41</td></tr><tr><td>2026-06-10</td><td>2393</td><td>億光</td><td>68.5</td><td>59.1</td><td class=up>116.35</td><td class=dn>53.65</td></tr><tr><td>2026-06-10</td><td>2105</td><td>正新</td><td>34.55</td><td>29.37</td><td class=up>53.95</td><td class=dn>26.93</td></tr><tr><td>2026-06-10</td><td>2412</td><td>中華電</td><td>144.0</td><td>130.83</td><td class=up>143.58</td><td class=dn>129.11</td></tr><tr><td>2026-06-10</td><td>2617</td><td>台航</td><td>29.65</td><td>26.4</td><td class=up>36.14</td><td class=dn>25.24</td></tr><tr><td>2026-06-10</td><td>2101</td><td>南港</td><td>32.75</td><td>31.54</td><td class=up>52.99</td><td class=dn>29.29</td></tr></tbody></table></div>
 <h2>📊 已結算戰績</h2>
 <div class=wrap><table><thead><tr><th>推薦日</th><th>代號</th><th>名稱</th><th>進場</th><th>出場</th><th>結果</th><th>報酬</th><th>結算日</th></tr></thead>
 <tbody><tr><td colspan=8>尚無已結算紀錄</td></tr></tbody></table></div>
 <p class=disc>⚠️ 本內容僅供參考，不構成投資建議或買賣要約。投資有風險，請自行評估、盈虧自負。</p>
+<script>
+const BYDATE={"2026-06-10": [{"sid": "2539", "name": "櫻花建", "cur": 39.35, "entry": 41.43, "target": 89.54, "stop": 37.11, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2886", "name": "兆豐金", "cur": 43.4, "entry": 39.03, "target": 46.78, "stop": 38.03, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2889", "name": "國票金", "cur": 15.05, "entry": 14.27, "target": 19.18, "stop": 13.68, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "1216", "name": "統一", "cur": 74.4, "entry": 72.12, "target": 91.51, "stop": 69.71, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "6670", "name": "復盛應用", "cur": 281.5, "entry": 250.38, "target": 397.1, "stop": 234.41, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2393", "name": "億光", "cur": 68.5, "entry": 59.1, "target": 116.35, "stop": 53.65, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2105", "name": "正新", "cur": 34.55, "entry": 29.37, "target": 53.95, "stop": 26.93, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2412", "name": "中華電", "cur": 144.0, "entry": 130.83, "target": 143.58, "stop": 129.11, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2617", "name": "台航", "cur": 29.65, "entry": 26.4, "target": 36.14, "stop": 25.24, "status": "open", "outcome": "", "ret": null, "closeDate": null}, {"sid": "2101", "name": "南港", "cur": 32.75, "entry": 31.54, "target": 52.99, "stop": 29.29, "status": "open", "outcome": "", "ret": null, "closeDate": null}]};
+function stat(p){
+  if(p.status==='closed') return (p.outcome==='win'?'<span class=up>✅達標 '+p.ret+'%</span>':'<span class=dn>🛑停損 '+p.ret+'%</span>');
+  if(p.status==='expired') return '<span style=color:#8b98a5>未成交</span>';
+  return '🟢追蹤中';
+}
+function renderDay(d){
+  const rows=(BYDATE[d]||[]).map(p=>'<tr><td>'+p.sid+'</td><td>'+p.name+'</td><td>'+(p.cur||'—')+'</td><td>'+p.entry+'</td><td class=up>'+p.target+'</td><td class=dn>'+p.stop+'</td><td>'+stat(p)+'</td></tr>').join('');
+  document.getElementById('daybody').innerHTML=rows||'<tr><td colspan=7>當天無推薦</td></tr>';
+}
+const sel=document.getElementById('daysel');
+sel.addEventListener('change',()=>renderDay(sel.value));
+renderDay(sel.value);
+</script>
 </body></html>
