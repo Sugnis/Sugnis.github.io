@@ -1,4 +1,4 @@
-### ▶ [訂閱我的 YouTube 頻道](https://www.youtube.com/channel/UCH7etObWdlUsBMcML6DUxuw)
+### ▶ [訂閱我的 YouTube 頻道](https://www.youtube.com/@SugnisAI/shorts)
 
 # 📈 每日精選 買賣參考價 ＆ 公開戰績
 
