@@ -6,7 +6,7 @@
 
 **產生：2026-08-20 22:30**
 
-資料截至：2026-08-20 · 行情截至：2026-08-20 · 收盤狀況截至：2026-08-20 23:59 (Asia/Taipei) · 來源政策：LOCAL_CACHE_UNVERIFIED · 權利狀態：PUBLIC_ALLOWED
+資料截至：2026-08-20 · 行情截至：2026-08-20 · 收盤狀況截至：2026-08-20 22:30 (Asia/Taipei) · 來源政策：LOCAL_CACHE_UNVERIFIED · 權利狀態：PUBLIC_ALLOWED
 
 ## 🏆 累積戰績
 
