@@ -10,3 +10,9 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}.stock-card:hover{transform:none}}
 @media(prefers-color-scheme:dark){.unscorable{background:#344051;color:#d9e2ec}.waiting_event{background:#253f5d;color:#b6d9ff}}
 @media(max-width:650px){.timeline-node summary>.result-status,.unscored>.result-status{margin-left:0}}
+
+.action-rules{border:1px solid var(--line);border-radius:9px;padding:24px;margin:28px 0 40px;background:var(--soft)}
+.action-rules h2{font-size:20px}.action-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
+.action-columns h3{font-size:16px;margin-bottom:8px}.action-original{white-space:pre-wrap;overflow-wrap:anywhere}
+.action-note{font-size:13px;color:var(--muted);margin-top:10px}
+@media(max-width:650px){.action-rules{padding:20px 16px}.action-columns{grid-template-columns:1fr;gap:20px}}
