@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sugnis.github.io/sitemap.xml
