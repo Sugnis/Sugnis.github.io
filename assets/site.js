@@ -43,3 +43,31 @@
   });
   apply();
 })();
+(() => {
+  // 瀏覽計數：同一瀏覽器每個台北日只加一次（今日＝當天人次，累積＝每日人次加總）；本機預覽只讀不加。
+  const box = document.getElementById("visits");
+  if (!box || typeof fetch !== "function" || typeof location === "undefined") return;
+  let day;
+  try {
+    day = "d" + new Intl.DateTimeFormat("en-CA", {timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"}).format(new Date()).replace(/-/g, "");
+  } catch (error) { return; }
+  if (!/^d\d{8}$/.test(day)) return;
+  const seenKey = "sugnis-visit-" + day;
+  let seen = false;
+  try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
+  const counting = location.hostname === "sugnis.github.io" && !seen;
+  const base = "https://abacus.jasoncameron.dev/" + (counting ? "hit/" : "get/") + "sugnis-research-site/";
+  const show = (id, value) => {
+    if (!Number.isFinite(value)) return;
+    document.getElementById(id).textContent = value.toLocaleString("zh-TW");
+    box.hidden = false;
+  };
+  const read = key => fetch(base + key, {referrerPolicy: "no-referrer", cache: "no-store"})
+    .then(response => response.ok ? response.json() : Promise.reject(new Error(String(response.status))))
+    .then(body => Number(body.value));
+  Promise.allSettled([read("total").then(value => show("vc-total", value)), read(day).then(value => show("vc-today", value))]).then(results => {
+    if (counting && results.every(result => result.status === "fulfilled")) {
+      try { localStorage.setItem(seenKey, "1"); } catch (error) {}
+    }
+  });
+})();
