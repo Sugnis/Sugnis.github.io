@@ -44,18 +44,11 @@
   apply();
 })();
 (() => {
-  // 瀏覽計數：同一瀏覽器每個台北日只加一次（今日＝當天人次，累積＝每日人次加總）；本機預覽只讀不加。
+  // 瀏覽計數：與選股站相同，正式網址每載入一次頁面 +1（2026-11-11 Henry：原本同一瀏覽器一天只算一次，
+  // 看過之後怎麼開都不動，像壞掉）；本機預覽只讀不加。
   const box = document.getElementById("visits");
   if (!box || typeof fetch !== "function" || typeof location === "undefined") return;
-  let day;
-  try {
-    day = "d" + new Intl.DateTimeFormat("en-CA", {timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"}).format(new Date()).replace(/-/g, "");
-  } catch (error) { return; }
-  if (!/^d\d{8}$/.test(day)) return;
-  const seenKey = "sugnis-visit-" + day;
-  let seen = false;
-  try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
-  const counting = location.hostname === "sugnis.github.io" && !seen;
+  const counting = location.hostname === "sugnis.github.io";
   // 一次請求同時拿今日與累積；今日的日期由計數伺服器以台北時間判定。
   const call = (action, method) => {
     const controller = typeof AbortController === "function" ? new AbortController() : null;
@@ -66,16 +59,13 @@
         return response.ok ? response.json() : Promise.reject(new Error(String(response.status)));
       });
   };
-  // 加數失敗只改讀一次、不重送加數，也不記「今天已算」，下次載入會再試著加。
-  const hit = counting ? call("hit", "POST").then(body => ({body, counted: true})) : Promise.reject(new Error("read-only"));
-  hit.catch(() => call("get", "GET").then(body => ({body, counted: false}))).then(({body, counted}) => {
+  // 加數失敗只改讀一次、不重送加數。
+  const hit = counting ? call("hit", "POST") : Promise.reject(new Error("read-only"));
+  hit.catch(() => call("get", "GET")).then(body => {
     const today = Number(body.today), total = Number(body.total);
     if (!Number.isFinite(today) || !Number.isFinite(total)) return;
     document.getElementById("vc-today").textContent = today.toLocaleString("zh-TW");
     document.getElementById("vc-total").textContent = total.toLocaleString("zh-TW");
     box.hidden = false;
-    if (counted) {
-      try { localStorage.setItem(seenKey, "1"); } catch (error) {}
-    }
   }).catch(() => {});
 })();
