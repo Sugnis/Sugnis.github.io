@@ -56,18 +56,26 @@
   let seen = false;
   try { seen = localStorage.getItem(seenKey) === "1"; } catch (error) {}
   const counting = location.hostname === "sugnis.github.io" && !seen;
-  const base = "https://abacus.jasoncameron.dev/" + (counting ? "hit/" : "get/") + "sugnis-research-site/";
-  const show = (id, value) => {
-    if (!Number.isFinite(value)) return;
-    document.getElementById(id).textContent = value.toLocaleString("zh-TW");
-    box.hidden = false;
+  // 一次請求同時拿今日與累積；今日的日期由計數伺服器以台北時間判定。
+  const call = (action, method) => {
+    const controller = typeof AbortController === "function" ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), 8000) : null;
+    return fetch("https://sugnis-visit-counter.ongxin-rchard-emo.workers.dev/" + action + "/research", {method, referrerPolicy: "no-referrer", cache: "no-store", signal: controller ? controller.signal : undefined})
+      .then(response => {
+        if (timer) clearTimeout(timer);
+        return response.ok ? response.json() : Promise.reject(new Error(String(response.status)));
+      });
   };
-  const read = key => fetch(base + key, {referrerPolicy: "no-referrer", cache: "no-store"})
-    .then(response => response.ok ? response.json() : Promise.reject(new Error(String(response.status))))
-    .then(body => Number(body.value));
-  Promise.allSettled([read("total").then(value => show("vc-total", value)), read(day).then(value => show("vc-today", value))]).then(results => {
-    if (counting && results.every(result => result.status === "fulfilled")) {
+  // 加數失敗只改讀一次、不重送加數，也不記「今天已算」，下次載入會再試著加。
+  const hit = counting ? call("hit", "POST").then(body => ({body, counted: true})) : Promise.reject(new Error("read-only"));
+  hit.catch(() => call("get", "GET").then(body => ({body, counted: false}))).then(({body, counted}) => {
+    const today = Number(body.today), total = Number(body.total);
+    if (!Number.isFinite(today) || !Number.isFinite(total)) return;
+    document.getElementById("vc-today").textContent = today.toLocaleString("zh-TW");
+    document.getElementById("vc-total").textContent = total.toLocaleString("zh-TW");
+    box.hidden = false;
+    if (counted) {
       try { localStorage.setItem(seenKey, "1"); } catch (error) {}
     }
-  });
+  }).catch(() => {});
 })();
